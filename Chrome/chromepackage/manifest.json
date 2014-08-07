@@ -1,0 +1,9 @@
+{
+  "name": "Sensor Connector Detection",
+  "version": "${FBSTRING_PLUGIN_VERSION}",
+  "description": "A simple plugin for detecting and launching the Sensor Connector application.",
+
+	"plugins": [
+    { "path": "npSensorConnectorDetection.dll", "public": true }
+  ]
+}
