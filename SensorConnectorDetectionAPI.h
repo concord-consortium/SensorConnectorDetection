@@ -31,15 +31,6 @@ public:
     SensorConnectorDetectionAPI(const SensorConnectorDetectionPtr& plugin, const FB::BrowserHostPtr& host) :
         m_plugin(plugin), m_host(host)
     {
-        registerMethod("echo",      make_method(this, &SensorConnectorDetectionAPI::echo));
-        registerMethod("testEvent", make_method(this, &SensorConnectorDetectionAPI::testEvent));
-        
-        // Read-write property
-        registerProperty("testString",
-                         make_property(this,
-                                       &SensorConnectorDetectionAPI::get_testString,
-                                       &SensorConnectorDetectionAPI::set_testString));
-        
         // Read-only property
         registerProperty("version",
                          make_property(this,
@@ -57,28 +48,12 @@ public:
 
     SensorConnectorDetectionPtr getPlugin();
 
-    // Read/Write property ${PROPERTY.ident}
-    std::string get_testString();
-    void set_testString(const std::string& val);
-
     // Read-only property ${PROPERTY.ident}
     std::string get_version();
-
-    // Method echo
-    FB::variant echo(const FB::variant& msg);
-    
-    // Event helpers
-    FB_JSAPI_EVENT(test, 0, ());
-    FB_JSAPI_EVENT(echo, 2, (const FB::variant&, const int));
-
-    // Method test-event
-    void testEvent();
 
 private:
     SensorConnectorDetectionWeakPtr m_plugin;
     FB::BrowserHostPtr m_host;
-
-    std::string m_testString;
 };
 
 #endif // H_SensorConnectorDetectionAPI
